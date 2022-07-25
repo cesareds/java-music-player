@@ -4,11 +4,30 @@ import dados.Artista;
 import dados.Playlist;
 import dados.Usuario;
 import negocio.AplicativoDeMusica;
+import net.arnx.jsonic.web.extension.SpringContainer;
 
+import javax.swing.*;
 import java.util.Scanner;
 
-public class Main {
+public class Main extends JFrame {
+    private JPanel mainPanel;
+    private JLabel titulo;
+    private JTextField login;
+    private JPasswordField passwordField1;
+    private JTextField usuárioTextField;
+
+    public Main(String title){
+        super(title);
+
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setContentPane(mainPanel);
+        this.pack();
+    }
+
     public static void main(String[] args) {
+        JFrame jFrame = new Main("🎧java-music-player🎧");
+        jFrame.setVisible(true);
+
         System.out.println("Bem vindo ao reprodutor de musica");
         int opcao = 0;
         do{
@@ -166,4 +185,5 @@ public class Main {
                 "11-listar musicas\n" +
                 "12-tocar previa");
     }
+
 }

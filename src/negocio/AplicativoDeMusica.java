@@ -59,7 +59,7 @@ public class AplicativoDeMusica {
         list.add(musica);
         usuarioAtual.setFavoritas(list);
     }
-    public void fazerUploadDeMusicas(String titulo, Artista artista, String path) {
+    public void fazerUploadDeMusicas(String path, Artista artista, String titulo) {
         Musica musica = new Musica(path, artista, titulo);
         musicas.add(musica);
     }
