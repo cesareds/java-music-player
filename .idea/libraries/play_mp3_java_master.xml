@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="play-mp3-java-master">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../Library/play-mp3-java-master" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../Library/play-mp3-java-master/src" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../Library/play-mp3-java-master" recursive="false" />
+  </library>
+</component>
