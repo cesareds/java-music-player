@@ -4,17 +4,28 @@ import dados.Artista;
 import dados.Playlist;
 import dados.Usuario;
 import negocio.AplicativoDeMusica;
-import net.arnx.jsonic.web.extension.SpringContainer;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Scanner;
 
 public class Main extends JFrame {
     private JPanel mainPanel;
     private JLabel titulo;
-    private JTextField login;
+    private JTextField loginTextField;
     private JPasswordField passwordField1;
-    private JTextField usuárioTextField;
+    private JButton signIn;
+    private JTextField senhaCadastro;
+    private JButton criarContaButton;
+    private JLabel loginUserLabel;
+    private JLabel loginPwdLabel;
+    private JLabel cadastroUserLabel;
+    private JLabel cadastroPwdLabel;
+    private JTextField userCadastroTextField;
+
+    private MenuPrincipal menuPrincipal = new MenuPrincipal();
+
 
     public Main(String title){
         super(title);
@@ -22,6 +33,25 @@ public class Main extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
+        signIn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String login = loginTextField.getText();
+                String pwd = String.valueOf(passwordField1.getPassword());
+                Usuario usuario = new Usuario(login, pwd);
+                if(app.login(usuario)){
+                    menuPrincipal.setVisible(true);
+                }
+            }
+        });
+        criarContaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String login = userCadastroTextField.getText();
+                String pwd = senhaCadastro.getText();
+                app.cadastrarUsuario(login, pwd);
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -79,7 +109,6 @@ public class Main extends JFrame {
             }
         }while(opcao!=0);
     }
-
     public static Scanner scannerString = new Scanner(System.in);
     public static Scanner scannerDigit = new Scanner(System.in);
     public static AplicativoDeMusica app = new AplicativoDeMusica();
