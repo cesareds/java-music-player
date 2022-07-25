@@ -1,6 +1,7 @@
 package main;
 
 import dados.Artista;
+import dados.Musica;
 import dados.Playlist;
 import dados.Usuario;
 import negocio.AplicativoDeMusica;
@@ -164,10 +165,17 @@ public class Main extends JFrame {
 
         todasAsMusicas();
         System.out.println("Qual musica deseja adicionar? (index)");
-        int index = scannerDigit.nextInt();
-        if(!app.adicionarMusica(playlist, app.getMusicas().get(index))){
+        String musicaInserida = scannerString.next();
+        final Musica[] newMusica = {new Musica()};
+
+        app.getMusicas().forEach(musica -> {
+            if(musica.getTitulo()==musicaInserida){
+                newMusica[0] = musica;
+            }
+        });
+        if(!app.adicionarMusica(playlist, newMusica[0])){
             app.criarPlaylist(nome);
-            app.adicionarMusica(playlist, app.getMusicas().get(index));
+            app.adicionarMusica(playlist, newMusica[0]);
         }
     }
     public static void removerMusica(){

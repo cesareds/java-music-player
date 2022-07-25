@@ -19,6 +19,10 @@ public class Musica {
     private Artista artista;
     private String titulo;
 
+    public Musica() {
+
+    }
+
     public Artista getArtista() {
         return artista;
     }
