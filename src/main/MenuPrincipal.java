@@ -38,6 +38,11 @@ public class MenuPrincipal extends JFrame{
     private JLabel addMscAPlPlaylistLabel;
     private JTextField addMscAPlMusicaTextField;
     private JLabel addMscAPlMusicaLabel;
+    private JTextField textField2;
+    private JTextField rmMscMusicaTextField;
+    private JLabel rmMscMusicaLabel;
+    private JTextField rmMscPlaylistTextField;
+    private JLabel rmMscPlaylistLabel;
     private JList addMscAPlPlaylistJList;
     private JList addMscAPlMusicaJList;
 
@@ -117,6 +122,48 @@ public class MenuPrincipal extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, app.listarMusicas().toString());
+            }
+        });
+        tocarPreviaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Escolha indice:\n" + app.listarMusicas().toString());
+                Musica musica = null;
+                for(int i = 0; i<app.getMusicas().size(); i++){
+                    JOptionPane.showMessageDialog(null, "roda: " + textField2.getText());
+                    JOptionPane.showMessageDialog(null, "sera que " + app.getMusicas().get(i).getTitulo() + " eh igual a " + textField2.getText());
+                    if(app.getMusicas().get(i).getTitulo().equals(textField2.getText())){
+                        JOptionPane.showMessageDialog(null, "titulo igual");
+                        musica = app.getMusicas().get(i);
+                    }
+                }
+                if(musica!=null){
+                    app.tocarPrevia(musica);
+                }else {
+                    JOptionPane.showMessageDialog(null, "Nenhuma musica encontrada");
+                }
+            }
+        });
+        rmMscPlButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Playlist playlist = null;
+                Musica musica = null;
+                for(int i = 0; i<app.getUsuarioAtual().getPlaylists().size(); i++){
+                    if(app.getUsuarioAtual().getPlaylists().get(i).getNome().equals(rmMscPlaylistTextField.getText())){
+                        playlist = app.getUsuarioAtual().getPlaylists().get(i);
+                    }
+                }
+                for(int i = 0; i<app.getMusicas().size(); i++){
+                    if(app.getMusicas().get(i).getTitulo().equals(rmMscMusicaTextField.getText())){
+                        musica = app.getMusicas().get(i);
+                    }
+                }
+                if(musica!=null&&playlist!=null){
+                    app.removerMusica(playlist, musica);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Não encontrado");
+                }
             }
         });
     }
