@@ -60,53 +60,25 @@ public class Main extends JFrame {
         jFrame.setVisible(true);
 
         System.out.println("Bem vindo ao reprodutor de musica");
-        int opcao = 0;
+        int opcao;
         do{
             menu();
             opcao = scannerDigit.nextInt();
-            switch (opcao){
-                case 0:
-                    System.out.println("Encerrando o aplicativo");
-                    break;
-                case 1:
-                    System.out.println(cadastrarUsuario());
-                    break;
-                case 2:
-                    System.out.println(login());
-                    break;
-                case 3:
-                    logout();
-                    break;
-                case 4:
-                    fazerUploadDeMusica();
-                    break;
-                case 5:
-                    criarPlaylist();
-                    break;
-                case 6:
-                    adicionarMusica();
-                    break;
-                case 7:
-                    removerMusica();
-                    break;
-                case 8:
-                    adicionarAsFavoritas();
-                    break;
-                case 9:
-                    listarArtistas();
-                    break;
-                case 10:
-                    listarPlaylists();
-                    break;
-                case 11:
-                    listarMusicas();
-                    break;
-                case 12:
-                    tocarPrevia();
-                    break;
-                default:
-                    System.out.println("opcao inválida");
-
+            switch (opcao) {
+                case 0 -> System.out.println("Encerrando o aplicativo");
+                case 1 -> System.out.println(cadastrarUsuario());
+                case 2 -> System.out.println(login());
+                case 3 -> logout();
+                case 4 -> fazerUploadDeMusica();
+                case 5 -> criarPlaylist();
+                case 6 -> adicionarMusica();
+                case 7 -> removerMusica();
+                case 8 -> adicionarAsFavoritas();
+                case 9 -> listarArtistas();
+                case 10 -> listarPlaylists();
+                case 11 -> listarMusicas();
+                case 12 -> tocarPrevia();
+                default -> System.out.println("opcao inválida");
             }
         }while(opcao!=0);
     }
@@ -136,7 +108,7 @@ public class Main extends JFrame {
         System.out.println("Titulo: ");
         String titulo = scannerString.next();
         app.getMusicas().forEach(musica -> {
-            if(musica.getTitulo()==titulo){
+            if(musica.getTitulo().equals(titulo)){
                 app.adicionarAsFavoritas(musica);
             }
         });
@@ -169,7 +141,7 @@ public class Main extends JFrame {
         final Musica[] newMusica = {new Musica()};
 
         app.getMusicas().forEach(musica -> {
-            if(musica.getTitulo()==musicaInserida){
+            if(musica.getTitulo().equals(musicaInserida)){
                 newMusica[0] = musica;
             }
         });
@@ -208,19 +180,20 @@ public class Main extends JFrame {
         app.tocarPrevia(app.getMusicas().get(index));
     }
     public static void menu(){
-        System.out.println("0-Sair\n" +
-                "01-Cadastrar usuario\n" +
-                "02-login\n" +
-                "03-logout\n" +
-                "04-fazer upload de musica\n" +
-                "05-criar playlist\n" +
-                "06-adicionar musica à playlist\n" +
-                "07-remover musica da playlist\n" +
-                "08-adicionar musica às favoritas\n" +
-                "09-listar artistas\n" +
-                "10-listar playlists\n" +
-                "11-listar musicas\n" +
-                "12-tocar previa");
+        System.out.println("""
+                0-Sair
+                01-Cadastrar usuario
+                02-login
+                03-logout
+                04-fazer upload de musica
+                05-criar playlist
+                06-adicionar musica à playlist
+                07-remover musica da playlist
+                08-adicionar musica às favoritas
+                09-listar artistas
+                10-listar playlists
+                11-listar musicas
+                12-tocar previa""");
     }
 
 }
