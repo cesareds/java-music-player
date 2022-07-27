@@ -67,7 +67,7 @@ public class AplicativoDeMusica {
         if(usuarioConectado) {
             if(usuarioAtual.getPlaylists().size()>0) {
                 for(int i = 0; i<usuarioAtual.getPlaylists().size(); i++) {
-                    if(usuarioAtual.getPlaylists().get(i).getNome() == playlist.getNome()){
+                    if(usuarioAtual.getPlaylists().get(i).getNome().equals(playlist.getNome())){
                         List<Playlist> todasAsPlaylists = usuarioAtual.getPlaylists();
                         Playlist pL = todasAsPlaylists.get(i);
                         List<Musica> playlistDoUsuario = pL.getPlaylist();
@@ -86,7 +86,7 @@ public class AplicativoDeMusica {
     }
     public boolean removerMusica(Playlist playlist, Musica musica) {
         for(int i = 0; i<usuarioAtual.getPlaylists().size(); i++){
-            if(usuarioAtual.getPlaylists().get(i).getNome() == playlist.getNome()){
+            if(usuarioAtual.getPlaylists().get(i).getNome().equals(playlist.getNome())){
                 List<Playlist> todasAsPlaylists = usuarioAtual.getPlaylists();
                 Playlist pL = todasAsPlaylists.get(i);
                 List<Musica> playlistDoUsuario = pL.getPlaylist();

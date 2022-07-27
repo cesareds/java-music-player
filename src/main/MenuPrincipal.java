@@ -92,16 +92,21 @@ public class MenuPrincipal extends JFrame{
         addMscPlButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Playlist playlist = new Playlist(addMscAPlPlaylistTextField.getText());
-                Musica newMusica = new Musica();
+                Playlist playlist=null;
+                Musica musica=null;
+
                 for(int i = 0; i<app.getMusicas().size(); i++){
-                    if(app.getMusicas().get(i).getTitulo()==addMscAPlMusicaTextField.getText()){
-                        newMusica = app.getMusicas().get(i);
+                    if(app.getMusicas().get(i).getTitulo().equals(addMscAPlMusicaTextField.getText())){
+                        musica = app.getMusicas().get(i);
                     }
                 }
-                if(!app.adicionarMusica(playlist, newMusica)){
-                    app.criarPlaylist(addMscAPlPlaylistTextField.getText());
-                    app.adicionarMusica(playlist, newMusica);
+                for(int i = 0; i<app.getUsuarioAtual().getPlaylists().size(); i++){
+                    if(app.getUsuarioAtual().getPlaylists().get(i).getNome().equals(addMscAPlPlaylistTextField.getText())){
+                        playlist = app.getUsuarioAtual().getPlaylists().get(i);
+                        if(playlist!=null&&musica!=null){
+                            app.adicionarMusica(playlist, musica);
+                        }
+                    }
                 }
             }
         });
